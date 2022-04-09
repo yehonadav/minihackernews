@@ -1,0 +1,29 @@
+{
+  "name": "minihackernews",
+  "version": "1.0.0",
+  "description": "simple minihackernews project",
+  "main": "index.js",
+  "repository": "https://github.com/yehonadav/minihackernews.git",
+  "author": "Yehonadav Bar Elan",
+  "license": "Apache2",
+  "private": false,
+  "scripts": {
+    "install:monorepo": "yarn install"
+  },
+  "workspaces": {
+    "packages": [
+      "client/*",
+      "common/*",
+      "server/infra/*",
+      "server/scripts",
+      "server/services/*"
+    ]
+  },
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  },
+  "resolutions": {
+    "@types/react": "^16.9.53",
+    "babel-loader": "8.1.0"
+  }
+}
