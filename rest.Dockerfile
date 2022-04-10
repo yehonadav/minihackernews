@@ -6,7 +6,7 @@ WORKDIR /rest/src/app
 COPY package.json /rest/src/app/
 RUN npm install
 
-COPY . /rest/src/app
+COPY docker /rest/src/app
 
 EXPOSE 3000
 
