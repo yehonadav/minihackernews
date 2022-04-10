@@ -6,16 +6,14 @@
   "repository": "https://github.com/yehonadav/minihackernews.git",
   "author": "Yehonadav Bar Elan",
   "license": "Apache2",
-  "private": false,
+  "private": true,
   "scripts": {
     "install:monorepo": "yarn install"
   },
   "workspaces": {
     "packages": [
-      "client/*",
       "common/*",
-      "server/infra/*",
-      "server/scripts",
+      "server/scripts/*",
       "server/services/*"
     ]
   },
