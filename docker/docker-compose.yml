@@ -1,0 +1,8 @@
+version: '3'
+services:
+  rest:
+    build:
+      context: ..
+      dockerfile: docker/rest.Dockerfile
+    ports:
+      - "3000:3000"

@@ -8,7 +8,8 @@
   "license": "Apache2",
   "private": true,
   "scripts": {
-    "install:monorepo": "yarn install"
+    "install:monorepo": "yarn install",
+    "dev": "cd server/services/rest && npm run dev"
   },
   "workspaces": {
     "packages": [
