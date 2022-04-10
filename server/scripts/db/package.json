@@ -1,0 +1,18 @@
+{
+  "name": "@scripts/db",
+  "version": "1.0.0",
+  "license": "private",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {},
+  "dependencies": {
+    "@common/server": "^1.0.0",
+    "@common/contracts": "^1.0.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.7.0",
+    "typescript": "^4.0.2",
+    "@types/node": "^17.0.21"
+  }
+}
