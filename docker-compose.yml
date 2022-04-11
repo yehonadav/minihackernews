@@ -1,8 +1,44 @@
 version: '3'
+
 services:
-  rest:
-    build:
-      context: ""
-      dockerfile: rest.Dockerfile
+  mongo:
+    container_name: mongodb
+    image: mongo:latest
+    volumes:
+      - mongo-db-docker-volume:/data/db
     ports:
-      - "3000:3000"
+      - "27017:27017"
+
+    #  TODO: solve issue, rest can't connect to mongoDB
+    #         on atlas: Could not connect to any servers in your MongoDB Atlas cluster
+    #         on local container:
+    #rest_1   | [App] { section: 'getMongooseClientAsync', message: 'start' }
+    #rest_1   | [App] { section: 'getMongooseClientAsync', message: 'connection success' }
+    #mongodb  | {"t":{"$date":"2022-04-02T08:21:22.402+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"Checkpointer","msg":"WiredTiger message","attr":{"message":"[1648887682:400484][1:0x7fe72c2a8700], WT_SESSION.checkpoint: [W
+    #T_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 3, snapshot max: 3 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0) base write gen: 363"}}
+    #rest_1   | [App] 08:21:36 � connect ECONNREFUSED 127.0.0.1:27017
+    #rest_1   | [App] MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+    #rest_1   | [App]     at NativeConnection.Connection.openUri (/rest/src/app/node_modules/mongoose/lib/connection.js:807:32)
+    #rest_1   | [App]     at Mongoose.createConnection (/rest/src/app/node_modules/mongoose/lib/index.js:284:10)
+    #rest_1   | [App]     at new ClientConnection (/rest/src/app/common/server/dist/services/mongoDbHandler/data/dataRepository.js:55:40)
+    #rest_1   | [App]     at /rest/src/app/common/server/dist/services/mongoDbHandler/data/dataRepository.js:83:26
+    #rest_1   | [App]     at step (/rest/src/app/common/server/dist/services/mongoDbHandler/data/dataRepository.js:33:23)
+    #rest_1   | [App]     at Object.next (/rest/src/app/common/server/dist/services/mongoDbHandler/data/dataRepository.js:14:53)
+    #rest_1   | [App]     at /rest/src/app/common/server/dist/services/mongoDbHandler/data/dataRepository.js:8:71
+    #rest_1   | [App]     at new Promise (<anonymous>)
+    #rest_1   | [App]     at __awaiter (/rest/src/app/common/server/dist/services/mongoDbHandler/data/dataRepository.js:4:12)
+    #rest_1   | [App]     at getMongooseClientAsync (/rest/src/app/common/server/dist/services/mongoDbHandler/data/dataRepository.js:63:51)
+    #mongodb  | {"t":{"$date":"2022-04-02T08:22:22.437+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"Checkpointer","msg":"WiredTiger message","attr":{"message":"[1648887742:437798][1:0x7fe72c2a8700], WT_SESSION.checkpoint: [W
+#  rest:
+#    build:
+#      context: ""
+#      dockerfile: rest.Dockerfile
+#    environment:
+#      STAGE: dev
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - mongo
+
+volumes:
+  mongo-db-docker-volume:

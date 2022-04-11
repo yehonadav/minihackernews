@@ -9,7 +9,16 @@
   "private": true,
   "scripts": {
     "install:monorepo": "yarn install",
-    "dev": "cd server/services/rest && npm run dev"
+    "dev": "cd server/services/rest && yarn run dev",
+    "docker:build:dev": "docker build -t fastify-rest-docker . -f rest.Dockerfile",
+    "docker:run:dev": "docker run -p 3000:3000 -e STAGE=dev fastify-rest-docker",
+    "docker:run:dev:background": "docker run -d -p 3000:3000 -e STAGE=dev fastify-rest-docker",
+    "install:mongo:docker": "docker pull mongo:latest",
+    "run:mongo:docker": "docker run -d -p 27017:27017 -v mongo-db-docker-volume:/data/db --name mongodb-docker mongo:latest",
+    "cli:mongo:docker": "docker exec -it mongodb-docker bash",
+    "docker:compose:build": "docker-compose build",
+    "docker:compose:up": "docker-compose up",
+    "docker:compose:down": "docker-compose down"
   },
   "workspaces": {
     "packages": [
