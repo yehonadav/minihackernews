@@ -4,7 +4,7 @@ export type Environment = {
   STAGE: STAGE;
   IS_OFFLINE?: string;
 
-  DB_PROTOCOL: "mongodb+srv",
+  DB_PROTOCOL: "mongodb+srv" | "mongodb",
   DB_USER: string,
   DB_PASS: string,
   DB_URL: string,

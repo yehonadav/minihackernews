@@ -26,21 +26,18 @@ export const getMongooseClientAsync = async ():Promise<ClientConnection> => {
   console.log({section:"getMongooseClientAsync", message:"start"});
   const [
     DB_PROTOCOL,
-    DB_USER,
-    DB_PASS,
     DB_URL,
     DB_NAME,
     DB_PARAMS,
   ] = getEnvironmentVariables(
     'DB_PROTOCOL',
-    'DB_USER',
-    'DB_PASS',
     'DB_URL',
     'DB_NAME',
     'DB_PARAMS'
   );
-
-  const DB_URI = `${DB_PROTOCOL}://${encodeURIComponent(DB_USER)}:${encodeURIComponent(DB_PASS)}@${DB_URL}/${DB_NAME}${DB_PARAMS}`;
+  const {DB_USER, DB_PASS} = process.env;
+  const credentials = DB_USER && DB_PASS ? `${encodeURIComponent(DB_USER)}:${encodeURIComponent(DB_PASS)}@` : '';
+  const DB_URI = `${DB_PROTOCOL}://${credentials}${DB_URL}/${DB_NAME}${DB_PARAMS}`;
 
   const databaseConnectOptions:ConnectOptions = {
     dbName: DB_NAME,
