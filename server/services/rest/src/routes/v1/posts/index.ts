@@ -177,7 +177,7 @@ const posts: FastifyPluginAsync = async (fastify, _opts): Promise<void> => {
       // verify a token symmetric - synchronous
       // const ownerUserId = jwt.verify(token, 'shhhhh').userId;
       const ownerUserId = JSON.parse((request.headers["authorization"] as string).split("bearer ")[1] || "{\"userId\":\"\"}")["userId"];
-      const postId = (request.params as any).id;
+      const postId:string = (request.params as any).id;
 
       const update = createPostSchemaValidation(request.body);
 
